@@ -20,7 +20,7 @@ Configuration.new do
   options do
     capabilities ['CAPABILITY_IAM']
     disable_rollback true
-    notification_topics []
+    notification_topics ENV.fetch('notification_topics', "").split(',')
     on_failure 'nothing'
     tags do
       Environment ENV['environment']
