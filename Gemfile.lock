@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/gswallow/sparkle-pack-aws-my-rds.git
+  revision: f9420dacfe5c4b452d4ce3149712dfb513c74b8a
+  specs:
+    sparkle-pack-aws-my-rds (0.0.1)
+      aws-sdk-core (~> 2)
+
+GIT
   remote: https://github.com/gswallow/sparkle-pack-aws-my-route53-zones.git
   revision: 30f0329f40016f93dc18a4295063b091f6549791
   specs:
@@ -19,12 +26,6 @@ GIT
     sparkle-pack-aws-my-subnets (0.0.1)
       aws-sdk-core (~> 2)
 
-PATH
-  remote: /Users/gswallow/src/sparkle-pack-aws-rds
-  specs:
-    sparkle-pack-aws-rds (0.0.1)
-      aws-sdk-core (~> 2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -32,7 +33,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     attribute_struct (0.3.4)
       bogo (>= 0.1.31, < 0.3.0)
-    aws-sdk-core (2.6.35)
+    aws-sdk-core (2.6.36)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
     aws-sigv4 (1.0.0)
@@ -126,10 +127,10 @@ PLATFORMS
 DEPENDENCIES
   sfn
   sparkle-pack-aws-availability-zones
+  sparkle-pack-aws-my-rds!
   sparkle-pack-aws-my-route53-zones!
   sparkle-pack-aws-my-security-groups!
   sparkle-pack-aws-my-subnets!
-  sparkle-pack-aws-rds!
 
 BUNDLED WITH
    1.12.5

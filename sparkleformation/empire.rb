@@ -1,6 +1,7 @@
 SparkleFormation.new(:empire_rds, :provider => :aws).load(:base).overrides do
   description <<EOF
-RDS instance for Empire, a VPC, and a Route53 entry (empire-rds.#{ENV['private_domain']})
+RDS instance for Empire. VPC security group. Route53 record (empire-rds.#{ENV['private_domain']}).
+Send notifications to the #{ENV['org']}-#{ENV['environment']}-create-rds-db-instance SNS topic.
 EOF
 
   ENV['app_username']                  ||= 'empire'
@@ -14,6 +15,15 @@ EOF
   end
 
   dynamic!(:vpc_security_group, 'empireDB', :ingress_rules => [])
+
+  # For Lambda
+  dynamic!(:security_group_ingress, 'private-to-empire-rds-postgres',
+           :source_sg => registry!(:my_security_group_id, 'private_sg'),
+           :ip_protocol => 'tcp',
+           :from_port => '5432',
+           :to_port => '5432',
+           :target_sg => attr!(:empireDB_ec2_security_group, 'GroupId')
+          )
 
   dynamic!(:db_subnet_group, 'empire')
 
