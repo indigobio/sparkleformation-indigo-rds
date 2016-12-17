@@ -25,5 +25,4 @@ EOF
            :attr => 'Endpoint.Address',
            :ttl => '60'
           )
-
 end
