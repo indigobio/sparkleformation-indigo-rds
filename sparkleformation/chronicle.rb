@@ -22,25 +22,13 @@ EOF
     constraint_description 'Must follow IP/mask notation (e.g. 192.168.1.0/24)'
   end
 
-  # Internal db instance
-  dynamic!(:vpc_security_group, 'chronicle', :ingress_rules => [])
-
-  # For Lambda
-  dynamic!(:security_group_ingress, 'private-to-chronicle-rds-postgres',
-           :source_sg => registry!(:my_security_group_id, 'private_sg'),
-           :ip_protocol => 'tcp',
-           :from_port => '5432',
-           :to_port => '5432',
-           :target_sg => attr!(:chronicle_ec2_security_group, 'GroupId')
-          )
-
   dynamic!(:db_subnet_group, 'chronicle')
 
   dynamic!(:rds_db_instance, 'chronicle',
            :engine => 'postgres',
            :app_username => ENV['app_username'],
            :app_password => ENV['app_password'],
-           :vpc_security_groups => _array(ref!(:chronicle_ec2_security_group)),
+           :vpc_security_groups => _array(registry!(:my_security_group_id, 'private_sg')),
            :source_db_instance_identifier => ENV['source_db_instance_identifier']
           )
 
