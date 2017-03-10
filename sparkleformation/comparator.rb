@@ -12,6 +12,7 @@ EOF
 
   dynamic!(:rds_db_instance, 'comparator',
            :engine => 'postgres',
+           :multi_az => 'false',
            :app_username => ENV['app_username'],
            :app_password => ENV['app_password'],
            :vpc_security_groups => _array(registry!(:my_security_group_id, 'private_sg')),
