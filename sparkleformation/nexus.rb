@@ -1,4 +1,4 @@
-SparkleFormation.new(:nexus_rds, :provider => :aws).load(:base).overrides do
+SparkleFormation.new(:nexus_rds, :provider => :aws).load(:base, :git_rev_outputs).overrides do
   description <<EOF
 RDS instance for Nexus. Route53 record (nexus-rds.#{ENV['private_domain']}).
 Send notifications to the #{ENV['org']}-#{ENV['environment']}-create-rds-db-instance SNS topic.

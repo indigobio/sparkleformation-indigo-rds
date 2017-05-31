@@ -1,4 +1,4 @@
-SparkleFormation.new(:comparator_rds, :provider => :aws).load(:base).overrides do
+SparkleFormation.new(:comparator_rds, :provider => :aws).load(:base, :git_rev_outputs).overrides do
   description <<EOF
 RDS instance for Comparator.  Route53 record (comparator-rds.#{ENV['private_domain']}).do
 Send notifications to the #{ENV['org']}-#{ENV['environment']}-create-rds-role SNS topic.

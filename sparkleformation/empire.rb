@@ -1,4 +1,4 @@
-SparkleFormation.new(:empire_rds, :provider => :aws).load(:base).overrides do
+SparkleFormation.new(:empire_rds, :provider => :aws).load(:base, :git_rev_outputs).overrides do
   description <<EOF
 RDS instance for Empire. VPC security group. Route53 record (empire-rds.#{ENV['private_domain']}).
 Send notifications to the #{ENV['org']}-#{ENV['environment']}-create-rds-db-instance SNS topic.

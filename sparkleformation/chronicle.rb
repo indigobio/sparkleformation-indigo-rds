@@ -1,4 +1,4 @@
-SparkleFormation.new(:chronicle_rds, :provider => :aws).load(:base).overrides do
+SparkleFormation.new(:chronicle_rds, :provider => :aws).load(:base, :git_rev_outputs).overrides do
   description <<EOF
 RDS instance for Chronicle. VPC security group for public instance. Route53 records (chronicle-rds.#{ENV['private_domain']}, chronicle-rds.#{ENV['public_domain']}).
 Send notifications to the #{ENV['org']}-#{ENV['environment']}-create-rds-db-instance SNS topic.
