@@ -12,6 +12,11 @@ SparkleFormation.dynamic(:rds_db_instance) do |_name, _config = {}|
     equals!(ref!("#{_name}_only_speaks_ssl".to_sym), 'true')
   )
 
+  conditions.set!(
+    "#{_name}_raise_max_connections".to_sym,
+    equals!(ref!("#{_name}_raise_max_connections".to_sym), 'true')
+  )
+
   parameters("#{_name}_restore_from_snapshot".to_sym) do
     type 'String'
     allowed_values %w(true false)
@@ -139,12 +144,20 @@ SparkleFormation.dynamic(:rds_db_instance) do |_name, _config = {}|
 
   parameters("#{_name}_only_speaks_ssl".to_sym) do
     type 'String'
-    default _config.fetch(:force_ssl, 'true')
+    default _config.fetch(:force_ssl, 'false')
     allowed_values %w(true false)
     description 'Allow SSL-encrypted connections only'
   end
 
+  parameters("#{_name}_raise_max_connections".to_sym) do
+    type 'String'
+    default _config.fetch(:raise_connections, 'true')
+    allowed_values %w(true false)
+    description 'Raise max number of allowed connections'
+  end
+
   dynamic!(:rds_force_ssl, _name, :engine => _config[:engine])
+  dynamic!(:raise_max_connections, _name, :engine => _config[:engine], :max => _config.fetch(:max, 50))
 
   dynamic!(:r_d_s_d_b_instance, _name).properties do
     allocated_storage ref!("#{_name}_allocated_storage".to_sym)
