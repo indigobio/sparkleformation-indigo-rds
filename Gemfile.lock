@@ -35,14 +35,14 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     attribute_struct (0.4.2)
       bogo (>= 0.1.31, < 0.3.0)
-    aws-sdk-core (2.10.24)
+    aws-sdk-core (2.10.58)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sigv4 (1.0.1)
+    aws-sigv4 (1.0.2)
     bogo (0.2.10)
       hashie
       multi_json
@@ -84,7 +84,7 @@ GEM
       multi_json
       multi_xml
       xml-simple
-    miasma-aws (0.3.8)
+    miasma-aws (0.3.10)
       miasma (>= 0.3.1, < 0.5)
     miasma-azure (0.1.4)
     miasma-google (0.1.0)
@@ -97,12 +97,12 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    multi_json (1.12.1)
+    multi_json (1.12.2)
     multi_xml (0.6.0)
-    net-ssh (4.1.0)
+    net-ssh (4.2.0)
     paint (2.0.0)
-    public_suffix (2.0.5)
-    sfn (3.0.26)
+    public_suffix (3.0.0)
+    sfn (3.0.28)
       bogo-cli (>= 0.2.5, < 0.4)
       bogo-ui (>= 0.1.22, < 0.4)
       graph (~> 2.8.1)
@@ -120,7 +120,7 @@ GEM
     slop (3.6.0)
     sparkle-pack-aws-availability-zones (0.1.2)
       aws-sdk-core (~> 2.2)
-    sparkle_formation (3.0.24)
+    sparkle_formation (3.0.26)
       attribute_struct (>= 0.3.5, < 0.5)
       bogo
       multi_json
