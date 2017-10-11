@@ -17,7 +17,7 @@ run_if_yes () {
 # Tear down the stacks
 for stack in $(aws cloudformation list-stacks \
  --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE DELETE_FAILED \
- --query 'StackSummaries[?contains(StackName, `'${org}'-'${environment}'`) == `true` && contains(StackName, `-rds-`) == `true`].StackId' \
+ --query 'StackSummaries[?contains(StackName, `'${org}'-'${environment}'`) == `true` && contains(StackName, `-rds-`) == `true` && contains(StackName, `lambda`) == `false`].StackId' \
  --output text); do
 
   run_if_yes "aws cloudformation delete-stack --stack-name $stack"
