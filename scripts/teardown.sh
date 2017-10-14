@@ -33,7 +33,7 @@ del_stack () {
 stacks=$(aws cloudformation list-stacks \
  --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE DELETE_FAILED \
  --query 'StackSummaries[?contains(StackName, `'${org}'-'${environment}'`) == `true` && contains(StackName, `-rds-`) == `true` && contains(StackName, `lambda`) == `false`].StackId' \
- --output text);
+ --output text)
 
 if [ -n "$stacks" ]; then
   for stack in $stacks; do
